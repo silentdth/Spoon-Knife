@@ -1,0 +1,17 @@
+{
+  "name": "spoon-knife",
+  "version": "1.0.0",
+  "description": "GitHub's Spoon-Knife demo repo with unit tests",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "29.7.0"
+  },
+  "jest": {
+    "testMatch": ["**/__tests__/**/*.test.js"],
+    "collectCoverageFrom": ["src/**/*.js"],
+    "coverageReporters": ["text", "text-summary", "lcov"]
+  }
+}
