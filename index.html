@@ -33,33 +33,24 @@
     }
     
   </style>
+  <script type="text/javascript" src="src/konami.js"></script>
   <script type="text/javascript">
 	(function() {
 		"use strict";
 
-		var keyCodes = new Array(10);
-		var pattern = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-
-		function keydownHandler(e) {
-			if (!e) {
-				return;
+		var handler = createKonamiHandler(function() {
+			var msg = document.getElementById("rainbow-message");
+			if (msg) {
+				msg.style.display = "";
 			}
-			keyCodes.shift();
-			keyCodes.push(e.keyCode);
-			if (keyCodes.every(function(element, index) { return element === pattern[index]; })) {
-				var msg = document.getElementById("rainbow-message");
-				if (msg) {
-					msg.style.display = "";
-				}
-			}
-		}
+		});
 
 		if (document.addEventListener) {
-			document.addEventListener("keydown", keydownHandler, false);
+			document.addEventListener("keydown", handler.keydownHandler, false);
 		} else if (window.attachEvent) {
-			window.attachEvent("onkeydown", keydownHandler);
+			window.attachEvent("onkeydown", handler.keydownHandler);
 		} else {
-			window.onkeydown = keydownHandler;
+			window.onkeydown = handler.keydownHandler;
 		}
 	})();
    </script>
