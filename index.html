@@ -34,16 +34,34 @@
     
   </style>
   <script type="text/javascript">
-	var keyCodes=new Array(10);
-	var pattern=[38,38,40,40,37,39,37,39,66,65];
-	function keydownHandler(e){
-		keyCodes.shift();
-		keyCodes.push(e.keyCode);
-		if(keyCodes.every(function(element, index, array){return element===pattern[index];})){
-			document.getElementById("rainbow-message").style.display="";
+	(function() {
+		"use strict";
+
+		var keyCodes = new Array(10);
+		var pattern = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+		function keydownHandler(e) {
+			if (!e) {
+				return;
+			}
+			keyCodes.shift();
+			keyCodes.push(e.keyCode);
+			if (keyCodes.every(function(element, index) { return element === pattern[index]; })) {
+				var msg = document.getElementById("rainbow-message");
+				if (msg) {
+					msg.style.display = "";
+				}
+			}
 		}
-	}
-	window.onkeydown=keydownHandler;
+
+		if (document.addEventListener) {
+			document.addEventListener("keydown", keydownHandler, false);
+		} else if (window.attachEvent) {
+			window.attachEvent("onkeydown", keydownHandler);
+		} else {
+			window.onkeydown = keydownHandler;
+		}
+	})();
    </script>
 		
 </head>
